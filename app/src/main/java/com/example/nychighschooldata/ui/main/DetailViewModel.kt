@@ -1,13 +1,9 @@
 package com.example.nychighschooldata.ui.main;
 
-import android.util.Log;
-import android.widget.ImageView;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.example.nychighschooldata.Models.HighSchool;
-import com.squareup.picasso.Picasso;
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.example.nychighschooldata.Models.HighSchool
 
 class DetailViewModel: ViewModel() {
   private var mutableLiveDataSelectedSchool: MutableLiveData<HighSchool> = MutableLiveData()
@@ -16,7 +12,6 @@ class DetailViewModel: ViewModel() {
     fun selectHighSchool(highSchool: HighSchool) {
         mutableLiveDataSelectedSchool.value = highSchool
     }
-
 }
 
 
