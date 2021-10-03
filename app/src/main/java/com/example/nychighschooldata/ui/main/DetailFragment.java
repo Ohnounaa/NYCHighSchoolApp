@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nychighschooldata.Models.HighSchool;
+import com.example.nychighschooldata.Models.SATScore;
 import com.example.nychighschooldata.R;
 import com.example.nychighschooldata.databinding.FragmentDetailBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -36,8 +37,8 @@ public class DetailFragment extends BottomSheetDialogFragment {
         final Observer<HighSchool> highSchoolObserver = highSchool -> {
             fragmentDetailBinding.heading.setText(highSchool.getSchool_name());
             fragmentDetailBinding.schoolDescription.setText(highSchool.getOverview_paragraph());
+            highSchool.
         };
-
         detailViewModel.getSelectedHighSchool().observe(getViewLifecycleOwner(), highSchoolObserver);
    return fragmentLayout;
 

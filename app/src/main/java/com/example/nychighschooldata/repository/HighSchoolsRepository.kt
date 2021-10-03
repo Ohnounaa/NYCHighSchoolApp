@@ -16,23 +16,16 @@ class HighSchoolsRepository private constructor(context: Context){
         return HighSchoolsDataRetriever().getHighSchoolSATScores()
     }
 
-  private val database: HighSchoolDatabase? = HighSchoolDatabase.getInstance(context.applicationContext)
-
-  private val highSchoolsDAO = database?.highSchoolsDAO()
-
-
+    private val database: HighSchoolDatabase? = HighSchoolDatabase.getInstance(context.applicationContext)
+    private val highSchoolsDAO = database?.highSchoolsDAO()
     suspend fun addHighSchoolToDB(highSchools: List<HighSchool>) = highSchoolsDAO?.addHighSchools(highSchools)
     suspend fun addSATScoresToDB(satScores: List<SATScore>) = highSchoolsDAO?.addSATScores(satScores)
+    suspend fun getSelectedSATScoreFromDB(dbn:String) = highSchoolsDAO?.getSATScoreForHighSchool(dbn)
 //
 //  suspend fun addFavoriteMovieToDB(movie: Movie) = highSchoolsDAO?.addHighSchool(movie)
 //
 //  suspend fun removeFavoriteMovieFromDB(movie: Movie) = highSchoolsDAO?.removeMovie(movie)
 //
-    fun getHighSchoolsFromDB(): LiveData<List<HighSchool>>? = highSchoolsDAO?.fetchHighSchools()
-
-
-
-
     companion object{
         private var INSTANCE: HighSchoolsRepository? = null
 
