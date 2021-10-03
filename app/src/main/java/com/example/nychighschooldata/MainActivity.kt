@@ -3,13 +3,16 @@ package com.example.nychighschooldata
 import android.os.Bundle
 import com.google.android.material.tabs.TabLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.nychighschooldata.ui.main.SectionsPagerAdapter
 import com.example.nychighschooldata.databinding.ActivityMainBinding
-import com.example.nychighschooldata.ui.main.DetailFragment
+import com.example.nychighschooldata.ui.main.DetailFragment;
 import com.example.nychighschooldata.ui.main.DetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import java.lang.reflect.Array.newInstance
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,13 +27,16 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.tabs
         TabLayoutMediator(tabs, viewPager) { tab, position ->
-            when(position) {
-                0 -> {tab.text = "NYC High Schools"}
-                1 -> {tab.text = "My Favorite High Schools"}
+            when (position) {
+                0 -> {
+                    tab.text = "NYC High Schools"
+                }
+                1 -> {
+                    tab.text = "My Favorite High Schools"
+                }
             }
             viewPager.currentItem = tab.position
         }.attach()
-
 
 
         val detailViewModel: DetailViewModel by lazy {
@@ -38,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         detailViewModel.selectedHighSchool.observe(
-            this, {
-            supportFragmentManager.let{
-                DetailFragment.newInstance().apply{
-                    show(it, "ALIZA")
-                    }
-                }
-            }
+            this, { createDetailFragmnet() }
         )
     }
-}
+    fun createDetailFragmnet() {
+        supportFragmentManager.commit{
+            setReorderingAllowed(true)
+            add<DetailFragment>(R.id.detail_container) }
+        }
+    }
+
