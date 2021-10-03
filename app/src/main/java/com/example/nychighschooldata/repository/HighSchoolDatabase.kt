@@ -4,10 +4,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.nychighschooldata.Models.HighSchool
+import com.example.nychighschooldata.Models.SATScore
 
-@Database(entities = [HighSchool:: class],
-    version = 1,
-    exportSchema = false)
+//@Database(entities = [HighSchool:: class],
+//    version = 1,
+//    exportSchema = false)
+
+@Database(
+    entities = [
+        HighSchool::class,
+       SATScore::class
+    ],
+    version = 3
+)
 
 
     abstract class HighSchoolDatabase: RoomDatabase() {
