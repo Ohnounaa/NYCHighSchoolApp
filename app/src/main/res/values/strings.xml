@@ -12,4 +12,5 @@
     <string name="favorite_films">Favorite High Schools</string>
     <string name="new_and_trending">Directory</string>
     <string name="your_favorites">Favorite High Schools</string>
+    <string name="grade_levels">Grade Levels: </string>
 </resources>

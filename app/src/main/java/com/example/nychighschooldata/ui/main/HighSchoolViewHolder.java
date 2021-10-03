@@ -22,6 +22,8 @@ public class HighSchoolViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(HighSchool highSchool) {
        binding.highSchoolName.setText(highSchool.getSchool_name());
+       binding.address.setText(highSchool.getLocation());
+       binding.gradesServed.setText("Grade Levels Served: "  + highSchool.getFinalgrades());
        binding.executePendingBindings();
     }
 

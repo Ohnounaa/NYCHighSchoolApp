@@ -7,6 +7,9 @@
     android:background="@drawable/blue_gradient"
     android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarSize="5dp"
         android:id="@+id/high_schools_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
