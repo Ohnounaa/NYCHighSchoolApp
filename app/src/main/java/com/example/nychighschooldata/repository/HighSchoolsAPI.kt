@@ -12,7 +12,7 @@ interface HighSchoolsAPI {
 
 
      @GET("f9bf-2cp4.json")
-     fun retrieveNYCHighSchoolsSATScores():Call<SATScore>
+     fun retrieveNYCHighSchoolsSATScores():Call<List<SATScore>>
 
 
 //    @GET("movie/popular?api_key=51c73e162cf5c4b1265e9d3e4b8f0128&language=en-US&page=1")

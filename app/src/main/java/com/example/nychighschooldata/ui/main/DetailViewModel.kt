@@ -12,6 +12,10 @@ class DetailViewModel: ViewModel() {
     fun selectHighSchool(highSchool: HighSchool) {
         mutableLiveDataSelectedSchool.value = highSchool
     }
+
+    fun getSATScoreForSelectedHighSchool() {
+
+    }
 }
 
 

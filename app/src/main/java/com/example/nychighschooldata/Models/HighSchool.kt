@@ -7,8 +7,6 @@ import java.util.*
 @Entity(tableName ="high_school")
 
 data class HighSchool(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
     val academicopportunities1: String,
     val academicopportunities2: String,
     val academicopportunities3: String,
@@ -30,7 +28,7 @@ data class HighSchool(
     val college_career_rate: String,
     val community_board: String,
     val council_district: String,
-    val dbn: String,
+    @PrimaryKey val dbn: String,
     val ell_programs: String,
     val end_time: String,
     val extracurricular_activities: String,

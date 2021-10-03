@@ -12,14 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HighSchoolsDataRetriever {
     private val baseUrl = "https://data.cityofnewyork.us/resource/"
+    private val retrofit: Retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
+    private val api: HighSchoolsAPI = retrofit.create(HighSchoolsAPI::class.java)
 
     fun getNYCHighSchoolData(): MutableLiveData<List<HighSchool>> {
         val highSchools: MutableLiveData<List<HighSchool>>  = MutableLiveData()
-        val retrofit: Retrofit = Retrofit.
-        Builder().
-        baseUrl(baseUrl).
-        addConverterFactory(GsonConverterFactory.create()).build()
-        val api: HighSchoolsAPI = retrofit.create(HighSchoolsAPI::class.java)
         val retriever = api.retrieveNYCHighSchools()
         retriever.enqueue(object: Callback<List<HighSchool>> {
             override fun onResponse(
@@ -28,7 +25,7 @@ class HighSchoolsDataRetriever {
             ) {
                 val resp = ArrayList<HighSchool>()
                 response.isSuccessful.let {
-                    response.body()?.forEach {""
+                    response.body()?.forEach {
                         resp.add(it)
                     }
 
@@ -40,5 +37,27 @@ class HighSchoolsDataRetriever {
             }
         })
             return highSchools
+    }
+    fun getHighSchoolSATScores(): MutableLiveData<List<SATScore>> {
+        val SATScores: MutableLiveData<List<SATScore>> = MutableLiveData()
+        val retriever = api.retrieveNYCHighSchoolsSATScores()
+        retriever.enqueue(object: Callback<List<SATScore>> {
+            override fun onResponse(
+                call: Call<List<SATScore>>,
+                response: Response<List<SATScore>>
+            ) {
+                val resp = ArrayList<SATScore>()
+                response.isSuccessful.let {
+                    response.body()?.forEach {
+                        resp.add(it)
+                    }
+                    SATScores.value = resp
+                }
+            }
+            override fun onFailure(call: Call<List<SATScore>>, t: Throwable) {
+                Log.d("OHNOUNA", t.message.toString())
+            }
+        })
+        return SATScores
     }
 }

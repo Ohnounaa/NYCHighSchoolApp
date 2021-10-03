@@ -35,7 +35,7 @@ public class DetailFragment extends BottomSheetDialogFragment {
         fragmentLayout = fragmentDetailBinding.getRoot();
         final Observer<HighSchool> highSchoolObserver = highSchool -> {
             fragmentDetailBinding.heading.setText(highSchool.getSchool_name());
-           fragmentDetailBinding.schoolDescription.setText(highSchool.getSchool_accessibility_description());
+            fragmentDetailBinding.schoolDescription.setText(highSchool.getOverview_paragraph());
         };
 
         detailViewModel.getSelectedHighSchool().observe(getViewLifecycleOwner(), highSchoolObserver);

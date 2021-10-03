@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nychighschooldata.Models.HighSchool
+import com.example.nychighschooldata.Models.SATScore
 
 class HighSchoolsRepository private constructor(context: Context){
 
@@ -11,30 +12,25 @@ class HighSchoolsRepository private constructor(context: Context){
         return HighSchoolsDataRetriever().getNYCHighSchoolData();
     }
 
-//    fun getPopularMoviesFromAPI(pageNumber: String) : MutableLiveData<List<Movie>> {
-//        return HighSchoolsDataRetriever().retrieveMostPopularMoviesData(pageNumber)
-//    }
-//
-//   fun getConfigurationDataFromAPI() : MutableLiveData<Configuration> {
-//       return HighSchoolsDataRetriever().retrieveConfigurationData()
-//   }
-//    fun getGenreMap() : MutableLiveData<Genres> {
-//        return HighSchoolsDataRetriever().retrieveGenreIdsAndNames()
-//
-//    }
+    fun getSATScores() : MutableLiveData<List<SATScore>> {
+        return HighSchoolsDataRetriever().getHighSchoolSATScores()
+    }
 
   private val database: HighSchoolDatabase? = HighSchoolDatabase.getInstance(context.applicationContext)
 
   private val highSchoolsDAO = database?.highSchoolsDAO()
 
 
-    suspend fun addHighSchoolToDB(highSchools: List<HighSchool>) = highSchoolsDAO?.addHighSchool(highSchools)
+    suspend fun addHighSchoolToDB(highSchools: List<HighSchool>) = highSchoolsDAO?.addHighSchools(highSchools)
+    suspend fun addSATScoresToDB(satScores: List<SATScore>) = highSchoolsDAO?.addSATScores(satScores)
 //
 //  suspend fun addFavoriteMovieToDB(movie: Movie) = highSchoolsDAO?.addHighSchool(movie)
 //
 //  suspend fun removeFavoriteMovieFromDB(movie: Movie) = highSchoolsDAO?.removeMovie(movie)
 //
- suspend fun getHighSchoolsFromDB(): LiveData<List<HighSchool>>? = highSchoolsDAO?.fetchHighSchools()
+    fun getHighSchoolsFromDB(): LiveData<List<HighSchool>>? = highSchoolsDAO?.fetchHighSchools()
+
+
 
 
     companion object{
