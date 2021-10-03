@@ -12,46 +12,20 @@ import kotlinx.coroutines.launch
 class HomePageViewModel: ViewModel() {
 
    private val repository = HighSchoolsRepository.retrieve()
-   private var highSchoolsMutableLiveData: MutableLiveData<ArrayList<HighSchool>> = MutableLiveData<ArrayList<HighSchool>>()
-   val highSchools: LiveData<ArrayList<HighSchool>>  get() = highSchoolsMutableLiveData
+   private var highSchoolsMutableLiveData: MutableLiveData<List<HighSchool>> = MutableLiveData<List<HighSchool>>()
+   var highSchools: LiveData<List<HighSchool>>? = null
 
-   init {
-          fetchHighSchoolsData()
-       Log.d("ALIZA", highSchools.value?.first()?.school_name?:"")
-   }
+   init { fetchHighSchoolsData() }
 
     private fun fetchHighSchoolsData() {
      viewModelScope.launch {
-       highSchoolsMutableLiveData = repository.getHighSchools()
+        if (!repository.getHighSchoolsFromDB()!!.value.isNullOrEmpty()) highSchools = repository.getHighSchools() else {
+            highSchoolsMutableLiveData = repository.getHighSchools()
+            highSchools = highSchoolsMutableLiveData
+        }
+
+//        highSchoolsMutableLiveData =
+//            if(repository.getHighSchoolsFromDB()?.value!!.isNotEmpty()) repository.getHighSchoolsFromDB() else repository.getHighSchools()
      }
     }
-
-
-//    private fun getPopularMovies(pageNumber: String) {
-//        viewModelScope.launch {
-//            val popularMoviesAPIData = repository.getPopularMoviesFromAPI(pageNumber)
-//            popularMovies = popularMoviesAPIData
-//        }
-//    }
-//
-//    private fun getConfigurationData() {
-//        viewModelScope.launch{
-//            val configDataFromAPI = repository.getConfigurationDataFromAPI()
-//            configurationData = configDataFromAPI
-//        }
-//    }
-//
-//    private fun getGenres() {
-//        viewModelScope.launch {
-//            val genresFromAPI = repository.getGenreMap()
-//            genreMap = genresFromAPI
-//        }
-//    }
-//
-//    private fun getNowPlayingMovies(pageNumber: String)  {
-//        viewModelScope.launch {
-//            val currentMoviesAPIData = repository.getNowPlayingMoviesFromAPI(pageNumber)
-//            currentMovies = currentMoviesAPIData
-//        }
-//    }
 }

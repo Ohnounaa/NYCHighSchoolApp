@@ -8,7 +8,7 @@ import com.example.nychighschooldata.Models.HighSchool
 interface HighSchoolsDAO {
 
 @Insert(onConflict = OnConflictStrategy.REPLACE)
-suspend fun addHighSchool(movie: HighSchool)
+suspend fun addHighSchool(schools: List<HighSchool>)
 
 @Query("SELECT * FROM high_school")
 fun fetchHighSchools() : LiveData<List<HighSchool>>

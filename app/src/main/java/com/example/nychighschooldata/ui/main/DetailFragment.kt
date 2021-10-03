@@ -12,67 +12,67 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class DetailFragment: BottomSheetDialogFragment() {
-
-    private val imageUrlStem = "https://image.tmdb.org/t/p/w500/"
-    lateinit var fragmentLayout: View
-
-    private val homePageViewModel: HomePageViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(HomePageViewModel::class.java)
-    }
-    private val detailViewModel: DetailViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(DetailViewModel::class.java)
-    }
-    private val favoriteMoviesViewModel: FavoriteMoviesViewModel by lazy {
-        ViewModelProvider(requireActivity()).get(FavoriteMoviesViewModel::class.java)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding: FragmentDetailBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_detail,
-            container,
-            false
-        )
-        fragmentLayout = binding.root
-//        val genres: MutableList<Genre> = mutableListOf()
-//        homePageViewModel.genreMap?.observe(viewLifecycleOwner, {genresList ->
-//            genresList.genres.forEach { genres?.add(it) }
-//            detailViewModel.selectedMovie.observe( viewLifecycleOwner, { movie ->
-//                createDetailView(movie, binding, genres) })
-//        })
-        return fragmentLayout
-    }
-
-    private fun createDetailView(
-        binding: FragmentDetailBinding,
-    )
-    {
-//        binding.movieViewModel = detailViewModel
-//        binding.apply {
-//            movieViewModel?.setTitle(movie.title)
-//            movieViewModel?.setOverview(movie.overview)
-//            movieViewModel?.setReleaseDate(movie.release_date)
-//            movieViewModel?.setRating(movie.vote_average)
-//            movieViewModel?.setGenres(movie.genre_ids, genresNamesList)
-//            loadImageForHomeAndDetailView(movieImage, imageUrlStem + movie.poster_path)
-//            if(favoriteMoviesViewModel.favoriteMovies.contains(movie)) {
-//                favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
-//            }
-//            favoriteButton.setOnClickListener {
-//                if(!favoriteMoviesViewModel.favoriteMovies.contains(movie)) {
-//                    favoriteMoviesViewModel.addFavoriteMovie(movie)
-//                   favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
-//                } else {
-//                    favoriteMoviesViewModel.removeFavoriteMovie(movie)
-//                    favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
-//                }
-//            }
-//        }
-    }
+//
+//    private val imageUrlStem = "https://image.tmdb.org/t/p/w500/"
+//    lateinit var fragmentLayout: View
+//
+//    private val homePageViewModel: HomePageViewModel by lazy {
+//        ViewModelProvider(requireActivity()).get(HomePageViewModel::class.java)
+//    }
+//    private val detailViewModel: DetailViewModel by lazy {
+//        ViewModelProvider(requireActivity()).get(DetailViewModel::class.java)
+//    }
+//    private val favoriteMoviesViewModel: FavoriteMoviesViewModel by lazy {
+//        ViewModelProvider(requireActivity()).get(FavoriteMoviesViewModel::class.java)
+//    }
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        val binding: FragmentDetailBinding = DataBindingUtil.inflate(
+//            inflater,
+//            R.layout.fragment_detail,
+//            container,
+//            false
+//        )
+//        fragmentLayout = binding.root
+////        val genres: MutableList<Genre> = mutableListOf()
+////        homePageViewModel.genreMap?.observe(viewLifecycleOwner, {genresList ->
+////            genresList.genres.forEach { genres?.add(it) }
+////            detailViewModel.selectedMovie.observe( viewLifecycleOwner, { movie ->
+////                createDetailView(movie, binding, genres) })
+////        })
+//        return fragmentLayout
+//    }
+//
+//    private fun createDetailView(
+//        binding: FragmentDetailBinding,
+//    )
+//    {
+////        binding.movieViewModel = detailViewModel
+////        binding.apply {
+////            movieViewModel?.setTitle(movie.title)
+////            movieViewModel?.setOverview(movie.overview)
+////            movieViewModel?.setReleaseDate(movie.release_date)
+////            movieViewModel?.setRating(movie.vote_average)
+////            movieViewModel?.setGenres(movie.genre_ids, genresNamesList)
+////            loadImageForHomeAndDetailView(movieImage, imageUrlStem + movie.poster_path)
+////            if(favoriteMoviesViewModel.favoriteMovies.contains(movie)) {
+////                favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+////            }
+////            favoriteButton.setOnClickListener {
+////                if(!favoriteMoviesViewModel.favoriteMovies.contains(movie)) {
+////                    favoriteMoviesViewModel.addFavoriteMovie(movie)
+////                   favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24)
+////                } else {
+////                    favoriteMoviesViewModel.removeFavoriteMovie(movie)
+////                    favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24)
+////                }
+////            }
+////        }
+//    }
 
     companion object {
         fun newInstance(

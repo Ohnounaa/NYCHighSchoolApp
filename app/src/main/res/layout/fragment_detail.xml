@@ -2,11 +2,6 @@
 <layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
- <data>
-        <variable
-            name="movieViewModel"
-            type="com.example.nychighschooldata.ui.main.DetailViewModel" />
-    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/detail_container"
         android:background="@color/dark_gray"

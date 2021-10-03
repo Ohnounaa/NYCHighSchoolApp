@@ -8,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.nychighschooldata.ui.main.SectionsPagerAdapter
 import com.example.nychighschooldata.databinding.ActivityMainBinding
 import com.example.nychighschooldata.ui.main.DetailFragment
-import com.example.nychighschooldata.ui.main.DetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {

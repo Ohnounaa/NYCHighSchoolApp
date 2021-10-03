@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 class HighSchoolsDataRetriever {
     private val baseUrl = "https://data.cityofnewyork.us/resource/"
 
-    fun getNYCHighSchoolData(): MutableLiveData<ArrayList<HighSchool>> {
-        val highSchools: MutableLiveData<ArrayList<HighSchool>>  = MutableLiveData()
+    fun getNYCHighSchoolData(): MutableLiveData<List<HighSchool>> {
+        val highSchools: MutableLiveData<List<HighSchool>>  = MutableLiveData()
         val retrofit: Retrofit = Retrofit.
         Builder().
         baseUrl(baseUrl).

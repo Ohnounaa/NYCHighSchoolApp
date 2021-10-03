@@ -13,12 +13,13 @@ import com.example.nychighschooldata.R;
 import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HighSchoolsAdapter extends RecyclerView.Adapter<HighSchoolViewHolder> {
 
-    ArrayList<HighSchool> highSchoolsList = null;
+    List<HighSchool> highSchoolsList = null;
 
-    public HighSchoolsAdapter(ArrayList<HighSchool> highSchools) {
+    public HighSchoolsAdapter(List<HighSchool> highSchools) {
         highSchoolsList = highSchools;
     }
 

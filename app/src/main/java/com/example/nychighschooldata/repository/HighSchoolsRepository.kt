@@ -1,12 +1,13 @@
 package com.example.nychighschooldata.repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nychighschooldata.Models.HighSchool
 
 class HighSchoolsRepository private constructor(context: Context){
 
-   fun getHighSchools(): MutableLiveData<ArrayList<HighSchool>> {
+   fun getHighSchools(): MutableLiveData<List<HighSchool>> {
         return HighSchoolsDataRetriever().getNYCHighSchoolData();
     }
 
@@ -25,12 +26,15 @@ class HighSchoolsRepository private constructor(context: Context){
   private val database: HighSchoolDatabase? = HighSchoolDatabase.getInstance(context.applicationContext)
 
   private val highSchoolsDAO = database?.highSchoolsDAO()
+
+
+    suspend fun addHighSchoolToDB(highSchools: List<HighSchool>) = highSchoolsDAO?.addHighSchool(highSchools)
 //
 //  suspend fun addFavoriteMovieToDB(movie: Movie) = highSchoolsDAO?.addHighSchool(movie)
 //
 //  suspend fun removeFavoriteMovieFromDB(movie: Movie) = highSchoolsDAO?.removeMovie(movie)
 //
-//  suspend fun getFavoriteMovies(): LiveData<List<Movie>>? = highSchoolsDAO?.fetchHighSchools()
+ suspend fun getHighSchoolsFromDB(): LiveData<List<HighSchool>>? = highSchoolsDAO?.fetchHighSchools()
 
 
     companion object{
