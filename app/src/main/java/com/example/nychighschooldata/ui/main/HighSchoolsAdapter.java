@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nychighschooldata.Models.HighSchool;
 import com.example.nychighschooldata.R;
+import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class HighSchoolsAdapter extends RecyclerView.Adapter<HighSchoolViewHolde
     @Override
     public HighSchoolViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.high_school_view_holder, parent, false);
+        HighSchoolViewHolderBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.high_school_view_holder, parent, false);
         return new HighSchoolViewHolder(binding);
     }
 

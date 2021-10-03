@@ -9,19 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nychighschooldata.Models.HighSchool;
 import com.example.nychighschooldata.R;
+import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 
 public class HighSchoolViewHolder extends RecyclerView.ViewHolder {
 
-    private final ViewDataBinding binding;
+    private final HighSchoolViewHolderBinding binding;
 
-    public HighSchoolViewHolder(ViewDataBinding binding) {
+    public HighSchoolViewHolder(HighSchoolViewHolderBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
     }
 
     public void bind(HighSchool highSchool) {
-       binding.setVariable(R.id.high_school_name, highSchool.getSchool_name());
-        binding.executePendingBindings();
+       binding.highSchoolName.setText(highSchool.getSchool_name());
+       binding.executePendingBindings();
     }
 
 }

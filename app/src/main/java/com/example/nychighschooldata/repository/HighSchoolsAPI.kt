@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface HighSchoolsAPI {
 
-    @GET("s3k6-pzi2.json")
+    @GET("s3k6-pzi2.json?\$limit=100&\$offset=0")
      fun retrieveNYCHighSchools(): Call<List<HighSchool>>
 
 
