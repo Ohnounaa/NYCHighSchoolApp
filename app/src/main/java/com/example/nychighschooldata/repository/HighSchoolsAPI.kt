@@ -7,21 +7,17 @@ import retrofit2.http.GET
 
 interface HighSchoolsAPI {
 
-    @GET("s3k6-pzi2.json?\$limit=100&\$offset=0")
+   /* Time permitting, I would've liked to have lazy loaded the high school data
+   and paginated it to improve the launch performance. I would have appended the following
+   query string parameters to do so:
+   \$limit=100&\$offset=0"
+    */
+
+    @GET("s3k6-pzi2.json")
      fun retrieveNYCHighSchools(): Call<List<HighSchool>>
 
 
      @GET("f9bf-2cp4.json")
      fun retrieveNYCHighSchoolsSATScores():Call<List<SATScore>>
-
-
-//    @GET("movie/popular?api_key=51c73e162cf5c4b1265e9d3e4b8f0128&language=en-US&page=1")
-//     fun retrieveMostPopularMovies(@Query("page")page: String): Call<Movies>
-//
-//    @GET("configuration?api_key=51c73e162cf5c4b1265e9d3e4b8f0128")
-//     fun retrieveConfiguration(): Call<Configuration>
-//
-//     @GET("genre/movie/list?api_key=51c73e162cf5c4b1265e9d3e4b8f0128&language=en-US")
-//     fun getGenreIdsToNamesMap() : Call<Genres>
 
 }
