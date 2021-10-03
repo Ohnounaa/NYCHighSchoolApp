@@ -2,6 +2,13 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.nychighschooldata.ui.main.HomePageViewModel" />
+
+    </data>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/high_school_card"
             android:layout_width="match_parent"
@@ -12,7 +19,6 @@
                 app:cardElevation="8dp"
                 android:layout_margin="10dp"
                 android:clickable="true"
-                android:onClick=""
                 app:cardBackgroundColor="@color/lightGray"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"

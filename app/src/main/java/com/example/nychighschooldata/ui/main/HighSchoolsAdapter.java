@@ -17,7 +17,7 @@ import java.util.List;
 
 public class HighSchoolsAdapter extends RecyclerView.Adapter<HighSchoolViewHolder> {
 
-    List<HighSchool> highSchoolsList = null;
+   List<HighSchool> highSchoolsList = null;
 
     public HighSchoolsAdapter(List<HighSchool> highSchools) {
         highSchoolsList = highSchools;
@@ -28,6 +28,7 @@ public class HighSchoolsAdapter extends RecyclerView.Adapter<HighSchoolViewHolde
     public HighSchoolViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         HighSchoolViewHolderBinding binding = DataBindingUtil.inflate(layoutInflater, R.layout.high_school_view_holder, parent, false);
+        // set the view's size, margins, paddings and layout parameters
         return new HighSchoolViewHolder(binding);
     }
 
