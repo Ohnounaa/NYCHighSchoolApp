@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.nychighschooldata.ui.main.SectionsPagerAdapter
 import com.example.nychighschooldata.databinding.ActivityMainBinding
 import com.example.nychighschooldata.ui.main.DetailFragment
+import com.example.nychighschooldata.ui.main.DetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
@@ -30,18 +31,20 @@ class MainActivity : AppCompatActivity() {
             viewPager.currentItem = tab.position
         }.attach()
 
-//        val detailViewModel: DetailViewModel by lazy {
-//            ViewModelProvider(this).get(DetailViewModel::class.java)
-//        }
-//
-//        detailViewModel.selectedMovie.observe(
-//            this, {
-//            supportFragmentManager.let{
-//                DetailFragment.newInstance().apply{
-//                    show(it, "ALIZA")
-//                    }
-//                }
-//            }
-//        )
+
+
+        val detailViewModel: DetailViewModel by lazy {
+            ViewModelProvider(this).get(DetailViewModel::class.java)
+        }
+
+        detailViewModel.selectedHighSchool.observe(
+            this, {
+            supportFragmentManager.let{
+                DetailFragment.newInstance().apply{
+                    show(it, "ALIZA")
+                    }
+                }
+            }
+        )
     }
 }
