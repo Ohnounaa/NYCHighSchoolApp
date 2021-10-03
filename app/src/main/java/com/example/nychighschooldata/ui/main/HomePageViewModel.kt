@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 class HomePageViewModel: ViewModel() {
 
    private val repository = HighSchoolsRepository.retrieve()
-   private var highSchoolsMutableLiveData: MutableLiveData<List<HighSchool>> = MutableLiveData<List<HighSchool>>()
-   val highSchools: LiveData<List<HighSchool>>  get() = highSchoolsMutableLiveData
+   private var highSchoolsMutableLiveData: MutableLiveData<ArrayList<HighSchool>> = MutableLiveData<ArrayList<HighSchool>>()
+   val highSchools: LiveData<ArrayList<HighSchool>>  get() = highSchoolsMutableLiveData
 
    init {
           fetchHighSchoolsData()

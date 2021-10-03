@@ -6,7 +6,7 @@ import com.example.nychighschooldata.Models.HighSchool
 
 class HighSchoolsRepository private constructor(context: Context){
 
-   fun getHighSchools(): MutableLiveData<List<HighSchool>> {
+   fun getHighSchools(): MutableLiveData<ArrayList<HighSchool>> {
         return HighSchoolsDataRetriever().getNYCHighSchoolData();
     }
 
