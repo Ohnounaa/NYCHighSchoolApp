@@ -20,13 +20,18 @@ import java.util.List;
 
 
 public class DetailFragment extends BottomSheetDialogFragment {
-    DetailViewModel detailViewModel = new ViewModelProvider(requireActivity()).get(DetailViewModel.class);
-    View fragmentLayout;
+
+
+    public static DetailFragment newInstance() {
+        return new DetailFragment();
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        DetailViewModel detailViewModel = new ViewModelProvider(requireActivity()).get(DetailViewModel.class);
+        View fragmentLayout;
         FragmentDetailBinding fragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
         fragmentLayout = fragmentDetailBinding.getRoot();
         final Observer<HighSchool> highSchoolObserver = highSchool -> {
