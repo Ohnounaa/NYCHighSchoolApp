@@ -1,7 +1,6 @@
 package com.example.nychighschooldata.repository
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.nychighschooldata.Models.HighSchool
 import com.example.nychighschooldata.Models.SATScore
@@ -12,15 +11,16 @@ class HighSchoolsRepository private constructor(context: Context){
         return HighSchoolsDataRetriever().getNYCHighSchoolData();
     }
 
-    fun getSATScores() : MutableLiveData<List<SATScore>> {
-        return HighSchoolsDataRetriever().getHighSchoolSATScores()
+    fun getSATScore(dbn: String): MutableLiveData<List<SATScore>> {
+        return HighSchoolsDataRetriever().getHighSchoolSATScore(dbn)
     }
 
     private val database: HighSchoolDatabase? = HighSchoolDatabase.getInstance(context.applicationContext)
     private val highSchoolsDAO = database?.highSchoolsDAO()
-    suspend fun addHighSchoolToDB(highSchools: List<HighSchool>) = highSchoolsDAO?.addHighSchools(highSchools)
+    suspend fun addHighSchoolToDB(highSchools: HighSchool) = highSchoolsDAO?.addHighSchool(highSchools)
     suspend fun addSATScoresToDB(satScores: List<SATScore>) = highSchoolsDAO?.addSATScores(satScores)
     suspend fun getSelectedSATScoreFromDB(dbn:String) = highSchoolsDAO?.getSATScoreForHighSchool(dbn)
+    suspend fun getAllSATScoresFromDB() = highSchoolsDAO?.fetchSATScores()
 //
 //  suspend fun addFavoriteMovieToDB(movie: Movie) = highSchoolsDAO?.addHighSchool(movie)
 //

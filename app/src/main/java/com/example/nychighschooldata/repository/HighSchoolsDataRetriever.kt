@@ -12,23 +12,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class HighSchoolsDataRetriever {
     private val baseUrl = "https://data.cityofnewyork.us/resource/"
-    private val retrofit: Retrofit = Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create()).build()
+    private val retrofit: Retrofit =
+        Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create())
+            .build()
     private val api: HighSchoolsAPI = retrofit.create(HighSchoolsAPI::class.java)
 
     fun getNYCHighSchoolData(): MutableLiveData<List<HighSchool>> {
-        val highSchools: MutableLiveData<List<HighSchool>>  = MutableLiveData()
+        val highSchools: MutableLiveData<List<HighSchool>> = MutableLiveData()
         val retriever = api.retrieveNYCHighSchools()
-        retriever.enqueue(object: Callback<List<HighSchool>> {
+        retriever.enqueue(object : Callback<List<HighSchool>> {
             override fun onResponse(
                 call: Call<List<HighSchool>>,
                 response: Response<List<HighSchool>>
             ) {
                 val resp = ArrayList<HighSchool>()
                 response.isSuccessful.let {
-                    response.body()?.forEach {
-                        resp.add(it)
-                    }
-
+                    response.body()?.forEach { resp.add(it) }
                     highSchools.value = resp
                 }
             }
@@ -36,28 +35,27 @@ class HighSchoolsDataRetriever {
                 Log.d("OHNOUNA", t.message.toString())
             }
         })
-            return highSchools
+        return highSchools
     }
-    fun getHighSchoolSATScores(): MutableLiveData<List<SATScore>> {
-        val SATScores: MutableLiveData<List<SATScore>> = MutableLiveData()
-        val retriever = api.retrieveNYCHighSchoolsSATScores()
-        retriever.enqueue(object: Callback<List<SATScore>> {
-            override fun onResponse(
-                call: Call<List<SATScore>>,
-                response: Response<List<SATScore>>
-            ) {
+
+    fun getHighSchoolSATScore(dbn: String): MutableLiveData<List<SATScore>> {
+        val SATScore: MutableLiveData<List<SATScore>> = MutableLiveData()
+        val retriever = api.retrieveNYCHighSchoolSATScore(dbn)
+        retriever.enqueue(object : Callback<List<SATScore>> {
+            override fun onResponse(call: Call<List<SATScore>>,
+                                    response: Response<List<SATScore>>) {
                 val resp = ArrayList<SATScore>()
                 response.isSuccessful.let {
-                    response.body()?.forEach {
-                        resp.add(it)
-                    }
-                    SATScores.value = resp
+                   response.body()?.forEach{
+                       resp.add(it)
+                   }
                 }
+                SATScore.value = resp
             }
             override fun onFailure(call: Call<List<SATScore>>, t: Throwable) {
                 Log.d("OHNOUNA", t.message.toString())
             }
         })
-        return SATScores
+        return SATScore
     }
 }

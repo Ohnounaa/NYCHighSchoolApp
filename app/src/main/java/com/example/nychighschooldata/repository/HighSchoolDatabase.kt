@@ -13,9 +13,9 @@ import com.example.nychighschooldata.Models.SATScore
 @Database(
     entities = [
         HighSchool::class,
-       SATScore::class
+        SATScore::class
     ],
-    version = 3
+    version = 5
 )
 
 

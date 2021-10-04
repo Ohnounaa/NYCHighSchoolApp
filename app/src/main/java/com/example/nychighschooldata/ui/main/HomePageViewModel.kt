@@ -18,21 +18,23 @@ class HomePageViewModel: ViewModel() {
 
    init {
        fetchHighSchoolsData()
-       fetchHighSchoolSATScores()
    }
 
     private fun fetchHighSchoolsData() {
      viewModelScope.launch {
          highSchoolsMutableLiveData = repository.getHighSchools()
          //one improvement to this would be to have the vm check if the db is pre-populated and then read from that
-         repository.addHighSchoolToDB(highSchools.value?:ArrayList())
+
+      //   repository.addHighSchoolToDB(highSchools.value?:ArrayList())
      }
     }
-    private fun fetchHighSchoolSATScores() {
-        viewModelScope.launch{
-            satScoresMutableLiveData = repository.getSATScores()
-            repository.addSATScoresToDB(satScoresMutableLiveData.value?:ArrayList())
-        }
-    }
+
+    //If I were paginating, I would batch retrieve the SAT scores.
+//    private fun fetchHighSchoolSATScores() {
+//        viewModelScope.launch{
+//            satScoresMutableLiveData = repository.getSATScores()
+//            repository.addSATScoresToDB(satScoresMutableLiveData.value?:ArrayList())
+//        }
+//    }
 
 }

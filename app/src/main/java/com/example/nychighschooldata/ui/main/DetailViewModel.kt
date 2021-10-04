@@ -7,20 +7,28 @@ import androidx.lifecycle.viewModelScope
 import com.example.nychighschooldata.Models.HighSchool
 import com.example.nychighschooldata.Models.SATScore
 import com.example.nychighschooldata.repository.HighSchoolsRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel : ViewModel() {
     private val repository = HighSchoolsRepository.retrieve()
-  private var mutableLiveDataSelectedSchool: MutableLiveData<HighSchool> = MutableLiveData()
+
+    private var mutableLiveDataSelectedSchool: MutableLiveData<HighSchool> = MutableLiveData()
     val selectedHighSchool: LiveData<HighSchool> get() = mutableLiveDataSelectedSchool
-    lateinit var selectedSATScore: LiveData<SATScore>;
 
+    var mutableLiveDataSATScore: MutableLiveData<List<SATScore>> = MutableLiveData()
+    val selectedSATScore: LiveData<List<SATScore>> get() =  mutableLiveDataSATScore
 
-    fun selectHighSchool(highSchool: HighSchool) {
+    fun onSelectSchool(highSchool: HighSchool) {
         mutableLiveDataSelectedSchool.value = highSchool
+        getSATScore(highSchool)
+    }
+
+    private fun getSATScore(highSchool: HighSchool) {
         viewModelScope.launch {
-            selectedSATScore = repository.getSelectedSATScoreFromDB(selectedHighSchool.value!!.dbn)!!
+           mutableLiveDataSATScore = repository.getSATScore(highSchool.dbn)
         }
+
     }
 }
 

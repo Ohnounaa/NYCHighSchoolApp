@@ -10,14 +10,17 @@ import java.nio.channels.SelectableChannel
 @Dao
 interface HighSchoolsDAO {
 
-@Insert(onConflict = OnConflictStrategy.REPLACE)
-suspend fun addHighSchools(schools: List<HighSchool>)
+@Insert
+ fun addHighSchool(school: HighSchool)
 
 @Insert(onConflict = OnConflictStrategy.REPLACE)
 suspend fun addSATScores(schools: List<SATScore>)
 
 @Query("SELECT * FROM high_school")
-fun fetchHighSchools() : LiveData<List<HighSchool>>
+fun fetchHighSchools(): LiveData<List<HighSchool>>
+
+@Query("SELECT * FROM sat_score")
+fun fetchSATScores() : LiveData<List<SATScore>>
 
 @Query("SELECT * FROM sat_score WHERE dbn = :selectedDbn")
 fun getSATScoreForHighSchool(selectedDbn:String) : LiveData<SATScore>

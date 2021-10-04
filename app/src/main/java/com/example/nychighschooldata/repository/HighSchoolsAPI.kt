@@ -4,6 +4,7 @@ import com.example.nychighschooldata.Models.HighSchool
 import com.example.nychighschooldata.Models.SATScore
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface HighSchoolsAPI {
 
@@ -16,8 +17,12 @@ interface HighSchoolsAPI {
     @GET("s3k6-pzi2.json")
      fun retrieveNYCHighSchools(): Call<List<HighSchool>>
 
-
+     /*I would uncomment this if I were paginating. Fetching the high
+     school and SAT data on initial load makes the app very slow.
+//     @GET("f9bf-2cp4.json")
+//     fun retrieveNYCHighSchoolsSATScores():Call<List<SATScore>>
+*/
      @GET("f9bf-2cp4.json")
-     fun retrieveNYCHighSchoolsSATScores():Call<List<SATScore>>
+     fun retrieveNYCHighSchoolSATScore(@Query("dbn")dbn: String): Call<List<SATScore>>
 
 }

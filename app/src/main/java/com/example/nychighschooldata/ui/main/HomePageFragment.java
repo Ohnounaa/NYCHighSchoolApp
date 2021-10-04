@@ -1,7 +1,6 @@
 package com.example.nychighschooldata.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.example.nychighschooldata.R;
 import com.example.nychighschooldata.databinding.FragmentHomeBinding;
 import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -90,7 +88,7 @@ public class HomePageFragment extends Fragment {
             binding.address.setText(highSchool.getLocation());
             binding.gradesServed.setText("Grade Levels Served: "  + highSchool.getFinalgrades());
             binding.card.setOnClickListener(v -> {
-                        this.detailViewModel.selectHighSchool(highSchool);
+                        this.detailViewModel.onSelectSchool(highSchool);
                     }
             );
             binding.executePendingBindings();
