@@ -13,7 +13,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
-            app:cardBackgroundColor="@color/lightGray"
+            app:cardBackgroundColor="@color/afternoonOrange"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,14 +40,15 @@
                     android:layout_height="wrap_content"
                     android:text="@string/remove_from_favorites"
                     android:textColor="@color/white"
+                    android:padding="4dp"
                     app:layout_constraintBottom_toTopOf="@+id/email_address"
-                    app:layout_constraintRight_toRightOf="@+id/email_address"
+                    app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/email_address" />
 
                 <TextView
                     android:id="@+id/email_address"
-                    android:layout_width="392dp"
                     android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold"
