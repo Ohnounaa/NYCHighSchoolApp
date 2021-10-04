@@ -39,6 +39,7 @@ public class DetailFragment extends BottomSheetDialogFragment {
         final Observer<HighSchool> highSchoolObserver = highSchool -> {
             fragmentDetailBinding.heading.setText(highSchool.getSchool_name());
             fragmentDetailBinding.schoolDescription.setText(highSchool.getOverview_paragraph());
+            fragmentDetailBinding.transportationOptions.setText("MTA Options: " + highSchool.getSubway());
         };
         detailViewModel.getSelectedHighSchool().observe(getViewLifecycleOwner(), highSchoolObserver);
         final Observer<List<SATScore>> singleSATObserver = satScore -> {
@@ -46,7 +47,6 @@ public class DetailFragment extends BottomSheetDialogFragment {
                 fragmentDetailBinding.satMath.setText("Math: " + satScore.get(0).getSat_math_avg_score());
                 fragmentDetailBinding.satEnglish.setText("Critical Reading: " + satScore.get(0).getSat_critical_reading_avg_score());
                 fragmentDetailBinding.satWriting.setText("Writing: " + satScore.get(0).getSat_writing_avg_score());
-              //  fragmentDetailBinding.rating.setText(satScore.get(0).getSat_critical_reading_avg_score());
             } else {
                 fragmentDetailBinding.noScoresReported.setVisibility(View.VISIBLE);
                 fragmentDetailBinding.satSectionHeader.setVisibility(View.GONE);
