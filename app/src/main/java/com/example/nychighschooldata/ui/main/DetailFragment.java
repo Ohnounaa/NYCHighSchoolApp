@@ -39,6 +39,9 @@ public class DetailFragment extends BottomSheetDialogFragment {
             fragmentDetailBinding.heading.setText(highSchool.getSchool_name());
             fragmentDetailBinding.schoolDescription.setText(highSchool.getOverview_paragraph());
             fragmentDetailBinding.transportationOptions.setText("MTA Options: " + highSchool.getSubway());
+           if(favoriteHighSchoolsViewModel.getFavoriteHighSchools().contains(highSchool)) {
+               fragmentDetailBinding.favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+           }
             fragmentDetailBinding.favoriteButton.setOnClickListener(v -> {
                 if(!favoriteHighSchoolsViewModel.getFavoriteHighSchools().contains(highSchool)) {
                     favoriteHighSchoolsViewModel.addFavoriteHighSchool(highSchool);
