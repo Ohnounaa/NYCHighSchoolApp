@@ -47,7 +47,7 @@ public class HomePageFragment extends Fragment {
     }
    class HighSchoolsAdapter extends RecyclerView.Adapter<HighSchoolViewHolder> {
 
-        List<HighSchool> highSchoolsList = null;
+        List<HighSchool> highSchoolsList;
 
         public HighSchoolsAdapter(List<HighSchool> highSchools) {
             highSchoolsList = highSchools;
@@ -87,15 +87,10 @@ public class HomePageFragment extends Fragment {
             binding.highSchoolName.setText(highSchool.getSchool_name());
             binding.address.setText(highSchool.getLocation());
             binding.gradesServed.setText("Grade Levels Served: "  + highSchool.getFinalgrades());
-            binding.card.setOnClickListener(v -> {
-                        this.detailViewModel.onSelectSchool(highSchool);
-                    }
-            );
+            binding.card.setOnClickListener(v -> this.detailViewModel.onSelectSchool(highSchool));
             binding.executePendingBindings();
         }
-
     }
-
 }
 
 

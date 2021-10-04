@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
     <androidx.recyclerview.widget.RecyclerView
         android:paddingTop="10dp"
-        android:id="@+id/favorite_movies_collection"
+        android:id="@+id/favorite_schools_collection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

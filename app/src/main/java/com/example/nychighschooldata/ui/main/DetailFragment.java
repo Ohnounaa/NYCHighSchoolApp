@@ -1,7 +1,6 @@
 package com.example.nychighschooldata.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +22,6 @@ import java.util.List;
 
 public class DetailFragment extends BottomSheetDialogFragment {
 
-
     public static DetailFragment newInstance() {
         return new DetailFragment();
     }
@@ -32,6 +30,7 @@ public class DetailFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         DetailViewModel detailViewModel = new ViewModelProvider(requireActivity()).get(DetailViewModel.class);
+        FavoriteHighSchoolsViewModel favoriteHighSchoolsViewModel = new ViewModelProvider(requireActivity()).get(FavoriteHighSchoolsViewModel.class);
         View fragmentLayout;
         FragmentDetailBinding fragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false);
         fragmentLayout = fragmentDetailBinding.getRoot();
@@ -40,6 +39,15 @@ public class DetailFragment extends BottomSheetDialogFragment {
             fragmentDetailBinding.heading.setText(highSchool.getSchool_name());
             fragmentDetailBinding.schoolDescription.setText(highSchool.getOverview_paragraph());
             fragmentDetailBinding.transportationOptions.setText("MTA Options: " + highSchool.getSubway());
+            fragmentDetailBinding.favoriteButton.setOnClickListener(v -> {
+                if(!favoriteHighSchoolsViewModel.getFavoriteHighSchools().contains(highSchool)) {
+                    favoriteHighSchoolsViewModel.addFavoriteHighSchool(highSchool);
+                    fragmentDetailBinding.favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
+                } else {
+                    favoriteHighSchoolsViewModel.removeFavoriteHighSchool(highSchool);
+                    fragmentDetailBinding.favoriteButton.setBackgroundResource(R.drawable.ic_baseline_favorite_border_24);
+                }
+            });
         };
         detailViewModel.getSelectedHighSchool().observe(getViewLifecycleOwner(), highSchoolObserver);
         final Observer<List<SATScore>> singleSATObserver = satScore -> {
