@@ -18,7 +18,7 @@ import com.example.nychighschooldata.databinding.FragmentFavoritesBinding;
 import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 import java.util.List;
 
-class FavoritesFragment extends Fragment {
+public class FavoritesFragment extends Fragment {
 
     public FavoritesFragment() {
         super(R.layout.fragment_favorites);
