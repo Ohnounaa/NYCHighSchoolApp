@@ -87,9 +87,8 @@ public class FavoritesFragment extends Fragment {
         public void bind(HighSchool highSchool) {
             binding.favoriteHighSchoolName.setText(highSchool.getSchool_name());
             binding.emailAddress.setText(highSchool.getSchool_email());
-            binding.removeButton.setOnClickListener(v -> {
-                favoriteHighSchoolsViewModel.removeFavoriteHighSchool(highSchool);
-            });
+            binding.removeButton.setOnClickListener(v -> favoriteHighSchoolsViewModel.removeFavoriteHighSchool(highSchool));
+            binding.cardFavorite.setOnClickListener(v -> detailViewModel.onSelectSchool(highSchool));
             binding.executePendingBindings();
         }
     }
