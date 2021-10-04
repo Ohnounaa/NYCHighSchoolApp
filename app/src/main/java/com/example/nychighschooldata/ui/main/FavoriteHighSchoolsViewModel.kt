@@ -10,12 +10,7 @@ import java.util.ArrayList;
 
 
 class FavoriteHighSchoolsViewModel: ViewModel() {
-
-
      var favoriteHighSchools: ArrayList<HighSchool> = ArrayList()
-        get() = field                     // getter
-        set(value) { field = value }      // setter
-
     private var highSchoolsMutableLiveData : MutableLiveData<List<HighSchool>> = MutableLiveData()
     val highSchoolsLiveData: LiveData<List<HighSchool>> get() = highSchoolsMutableLiveData
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.nychighschooldata.Models.HighSchool;
 import com.example.nychighschooldata.R;
+import com.example.nychighschooldata.databinding.FavoriteHighSchoolViewHolderBinding;
 import com.example.nychighschooldata.databinding.FragmentFavoritesBinding;
 import com.example.nychighschooldata.databinding.HighSchoolViewHolderBinding;
 import java.util.List;
@@ -24,13 +25,14 @@ public class FavoritesFragment extends Fragment {
         super(R.layout.fragment_favorites);
     }
     View fragmentLayout = null;
+    FavoriteHighSchoolsViewModel favoriteHighSchoolsViewModel;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        DetailViewModel detailViewModel = new ViewModelProvider(requireActivity()).get(DetailViewModel.class);
-        FavoriteHighSchoolsViewModel favoriteHighSchoolsViewModel = new ViewModelProvider(requireActivity()).get(FavoriteHighSchoolsViewModel.class);
         FragmentFavoritesBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites, container, false);
+        favoriteHighSchoolsViewModel = new ViewModelProvider(requireActivity()).get(FavoriteHighSchoolsViewModel.class);
         fragmentLayout = binding.getRoot();
 
         final Observer<List<HighSchool>> favoriteHighSchoolsObserver = highSchools -> {
@@ -54,8 +56,8 @@ public class FavoritesFragment extends Fragment {
         @Override
         public FavoriteHighSchoolViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-            HighSchoolViewHolderBinding binding = DataBindingUtil.inflate(layoutInflater,
-                    R.layout.high_school_view_holder, parent,
+            FavoriteHighSchoolViewHolderBinding binding = DataBindingUtil.inflate(layoutInflater,
+                    R.layout.favorite_high_school_view_holder, parent,
                     false);
             // set the view's size, margins, paddings and layout parameters
             return new FavoritesFragment.FavoriteHighSchoolViewHolder(binding);
@@ -74,19 +76,20 @@ public class FavoritesFragment extends Fragment {
 
     class FavoriteHighSchoolViewHolder extends RecyclerView.ViewHolder {
 
-        private final HighSchoolViewHolderBinding binding;
+        private final FavoriteHighSchoolViewHolderBinding binding;
         DetailViewModel detailViewModel = new ViewModelProvider(requireActivity()).get(DetailViewModel.class);
 
-        public FavoriteHighSchoolViewHolder(HighSchoolViewHolderBinding binding) {
+        public FavoriteHighSchoolViewHolder(FavoriteHighSchoolViewHolderBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
         public void bind(HighSchool highSchool) {
-            binding.highSchoolName.setText(highSchool.getSchool_name());
-            binding.address.setText(highSchool.getLocation());
-            binding.gradesServed.setText("Grade Levels Served: "  + highSchool.getFinalgrades());
-            binding.card.setOnClickListener(v -> this.detailViewModel.onSelectSchool(highSchool));
+            binding.favoriteHighSchoolName.setText(highSchool.getSchool_name());
+            binding.emailAddress.setText(highSchool.getSchool_email());
+            binding.removeButton.setOnClickListener(v -> {
+                favoriteHighSchoolsViewModel.removeFavoriteHighSchool(highSchool);
+            });
             binding.executePendingBindings();
         }
     }

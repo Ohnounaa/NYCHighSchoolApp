@@ -6,20 +6,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.nychighschooldata.R
 
-private val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2
-)
-
-
 class SectionsPagerAdapter(fm: FragmentManager, lifecycle: Lifecycle) :
    FragmentStateAdapter(fm, lifecycle) {
-
-
     override fun getItemCount(): Int {
        return 2
     }
-
     override fun createFragment(position: Int): Fragment {
        lateinit var fragment: Fragment
         when(position) {
