@@ -37,6 +37,7 @@ public class HomePageFragment extends Fragment {
         fragmentLayout = binding.getRoot();
         HomePageViewModel homePageViewModel = new ViewModelProvider(requireActivity()).get(HomePageViewModel.class);
         final Observer<List<HighSchool>> highSchoolsObserver = highSchools -> {
+            binding.schoolCount.setText(highSchools.size() + "Schools: ");
            binding.highSchoolsList.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
            binding.highSchoolsList.setAdapter(new HighSchoolsAdapter(highSchools));
         };

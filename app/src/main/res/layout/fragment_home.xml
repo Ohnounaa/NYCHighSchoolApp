@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:background="@drawable/blue_gradient"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/school_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <androidx.recyclerview.widget.RecyclerView
         android:scrollbars="vertical"
         android:scrollbarStyle="insideOverlay"
